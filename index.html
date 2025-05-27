@@ -130,20 +130,18 @@
       background-color: #ff8533;
     }
 
-    /* Side vertical text */
+    /* Side vertical text using <br> */
     .side-text {
       position: fixed;
       top: 50%;
       transform: translateY(-50%);
-      writing-mode: vertical-rl;
-      text-orientation: upright;
-      font-size: 1em;
-      color: rgba(255, 255, 255, 0.3);
-      letter-spacing: 2px;
+      font-size: 0.9em;
+      color: rgba(255, 255, 255, 0.25);
       font-weight: bold;
-      z-index: 10;
+      font-family: monospace;
+      line-height: 1.1;
+      text-align: center;
       white-space: nowrap;
-      line-height: 1.2;
       pointer-events: none;
     }
 
@@ -158,18 +156,22 @@
 </head>
 <body>
 
-  <!-- Side Poetic Texts -->
-  <div class="side-text left-text">GRIT OVER GLITTER</div>
-  <div class="side-text right-text">NOT ALL WHO DISAPPEAR ARE LOST</div>
+  <!-- Vertical Side Text (Manual line break version) -->
+  <div class="side-text left-text">
+    G<br>R<br>I<br>T<br><br>O<br>V<br>E<br>R<br><br>G<br>L<br>I<br>T<br>T<br>E<br>R
+  </div>
 
-  <!-- Hero -->
+  <div class="side-text right-text">
+    N<br>O<br>T<br><br>A<br>L<br>L<br><br>W<br>H<br>O<br><br>D<br>I<br>S<br>A<br>P<br>P<br>E<br>A<br>R<br><br>A<br>R<br>E<br><br>L<br>O<br>S<br>T
+  </div>
+
+  <!-- Main Content -->
   <img src="https://i.imgur.com/pqwLA55.png" alt="Outsider Profile" class="profile-photo">
   <h1>Welcome to Outsider</h1>
   <p>
     A digital space for the ones who walk <span class="highlight">off the map</span>, who wander on motorbikes and dream with the stars. This is my first web page — built with curiosity and code.
   </p>
 
-  <!-- About -->
   <div class="about-section">
     <h2>About Outsider</h2>
     <p>
@@ -179,7 +181,6 @@
     </p>
   </div>
 
-  <!-- Gear -->
   <div class="gear-section">
     <h2>Outsider's Gear</h2>
 
@@ -188,7 +189,8 @@
       <div class="gear-info">
         <h3>KTM 390 Adventure</h3>
         <p>
-          Outsider’s trusted machine. Lightweight, fearless, and ready for chaos. Outfitted with <strong>Thoska soft panniers</strong>, it carries what matters — tools, survival gear, and a past he won’t talk about.
+          Outsider’s trusted machine. Lightweight, fearless, and ready for chaos.
+          Outfitted with <strong>Thoska soft panniers</strong>, it carries what matters — tools, survival gear, and a past he won’t talk about.
         </p>
       </div>
     </div>
@@ -224,7 +226,6 @@
     </div>
   </div>
 
-  <!-- Journey Log -->
   <div class="log-section">
     <h2>Journey Log</h2>
 
@@ -244,7 +245,6 @@
     </div>
   </div>
 
-  <!-- Quote Generator -->
   <div class="quote-section">
     <h2>Outsider's Wisdom</h2>
     <p id="quote-display" class="quote-text">
