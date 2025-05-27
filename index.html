@@ -108,26 +108,41 @@
 
     .left-phrases, .right-phrases {
       position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #ff6600;
-      font-size: 0.8em;
-      opacity: 0.2;
-      line-height: 2em;
-      letter-spacing: 1px;
-      writing-mode: vertical-rl;
-      text-align: center;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      font-size: 1.1em;
       font-style: italic;
+      color: #ff6600;
+      opacity: 0.4;
       pointer-events: none;
+      z-index: 10;
+      animation: flicker 4s infinite;
     }
 
     .left-phrases {
       left: 10px;
+      text-align: left;
+      align-items: flex-start;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
     }
 
     .right-phrases {
       right: 10px;
+      text-align: right;
+      align-items: flex-end;
       writing-mode: vertical-lr;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 0.4; }
+      45% { opacity: 0.2; }
+      48% { opacity: 0.5; transform: translateY(-1px); }
+      52% { opacity: 0.3; transform: translateY(1px); }
+      60% { opacity: 0.4; transform: none; }
     }
   </style>
 </head>
@@ -196,10 +211,8 @@
         </p>
       </div>
     </div>
-
   </div>
 
-  <!-- Poetic Vertical Phrases -->
   <div class="left-phrases">
     <p>The Factory made me.</p>
     <p>Wanderland saved me.</p>
@@ -213,7 +226,7 @@
     <p>Silence is my weapon.</p>
     <p>The system fears the free.</p>
   </div>
-
 </body>
 </html>
+
 
