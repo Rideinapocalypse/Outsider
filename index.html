@@ -14,7 +14,6 @@
       font-family: 'Arial', sans-serif;
       text-align: center;
       padding: 50px;
-      position: relative;
       overflow-x: hidden;
     }
 
@@ -48,7 +47,7 @@
     .about-section, .gear-section, .log-section, .quote-section {
       margin-top: 60px;
       padding: 30px;
-      background-color: #1c1c1c;
+      background-color: rgba(0, 0, 0, 0.7);
       border: 2px solid #ff6600;
       border-radius: 10px;
       max-width: 800px;
@@ -131,18 +130,21 @@
       background-color: #ff8533;
     }
 
-    /* Vertical Text */
+    /* Side vertical text */
     .side-text {
       position: fixed;
       top: 50%;
       transform: translateY(-50%);
       writing-mode: vertical-rl;
-      text-orientation: mixed;
-      font-size: 1.2em;
-      color: rgba(200, 200, 200, 0.4);
-      letter-spacing: 3px;
+      text-orientation: upright;
+      font-size: 1em;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 2px;
       font-weight: bold;
       z-index: 10;
+      white-space: nowrap;
+      line-height: 1.2;
+      pointer-events: none;
     }
 
     .left-text {
@@ -156,11 +158,11 @@
 </head>
 <body>
 
-  <!-- Side Phrases -->
+  <!-- Side Poetic Texts -->
   <div class="side-text left-text">GRIT OVER GLITTER</div>
   <div class="side-text right-text">NOT ALL WHO DISAPPEAR ARE LOST</div>
 
-  <!-- Profile -->
+  <!-- Hero -->
   <img src="https://i.imgur.com/pqwLA55.png" alt="Outsider Profile" class="profile-photo">
   <h1>Welcome to Outsider</h1>
   <p>
