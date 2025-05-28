@@ -15,9 +15,11 @@
       text-align: center;
       overflow-x: hidden;
     }
+    h1, h2 {
+      letter-spacing: 2px;
+    }
     h1 {
       font-size: 3em;
-      letter-spacing: 2px;
       margin-bottom: 20px;
     }
     p {
@@ -63,45 +65,6 @@
     }
     .gear-box p {
       font-style: italic;
-    }
-    .gear-section-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 40px;
-      margin-top: 40px;
-    }
-    .gear-section {
-      padding: 30px;
-      background-color: rgba(28, 28, 28, 0.85);
-      border: 2px solid #ff6600;
-      border-radius: 10px;
-      max-width: 700px;
-    }
-    .gear-section h2 {
-      color: #ff6600;
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-    .gear-item {
-      margin-bottom: 40px;
-    }
-    .gear-photo {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 10px;
-      border: 2px solid #ff6600;
-      margin-bottom: 15px;
-    }
-    .gear-info h3 {
-      color: #eee;
-      font-size: 1.5em;
-      margin-bottom: 10px;
-    }
-    .gear-info p {
-      font-size: 1em;
-      color: #ccc;
-      line-height: 1.6;
     }
     .instagram-link {
       position: fixed;
@@ -150,6 +113,16 @@
       cursor: pointer;
       border-radius: 6px;
     }
+    .quote-section, .recruit-section, .quiz-section, .intro-section, .clock-section {
+      background-color: rgba(28, 28, 28, 0.85);
+      padding: 30px;
+      margin-top: 40px;
+      border: 2px solid #ff6600;
+      border-radius: 10px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   </style>
 </head>
 <body>
@@ -159,9 +132,11 @@
     </video>
   </div>
 
-  <img src="https://i.imgur.com/pqwLA55.png" alt="Outsider Profile" class="profile-photo">
-  <h1>Welcome to Outsider</h1>
-  <p>A digital space for the ones who walk <span class="highlight">off the map</span>, who wander on motorbikes and dream with the stars.</p>
+  <div class="intro-section">
+    <img src="https://i.imgur.com/pqwLA55.png" alt="Outsider Profile" class="profile-photo">
+    <h1>Welcome to Outsider</h1>
+    <p>A digital space for the ones who walk <span class="highlight">off the map</span>, who wander on motorbikes and dream with the stars.</p>
+  </div>
 
   <div class="clock-section">
     <h2>Days Since the Apocalypse</h2>
@@ -170,44 +145,68 @@
 
   <div class="gear-pair">
     <div class="gear-box">
-      <h3>Outsider</h3>
-      <img src="https://i.imgur.com/BhU2EPI.png" alt="Outsider">
-      <p>Marked by ruin, fueled by purpose. He rides alone and strikes without warning.</p>
-    </div>
-    <div class="gear-box">
-      <h3>Mercenary Unit Alpha</h3>
-      <img src="https://i.imgur.com/clLVmhG.png" alt="Mercenary">
-      <p>Hardened by orders, driven by control. They patrol the ashes and obey without question.</p>
-    </div>
-  </div>
-
-  <div class="gear-pair">
-    <div class="gear-box">
+      <img src="https://i.imgur.com/BhU2EPI.png" alt="Outsider full body">
+      <p><strong>Outsider:</strong> Marked by ruin, fueled by purpose. He rides alone and strikes without warning.</p>
       <h3>Outsider's Gear</h3>
       <img src="https://i.imgur.com/vrxqPMR.png" alt="KTM 390 Adventure">
-      <p>Outsider’s trusted machine. Lightweight, fearless, and ready for chaos. Outfitted with Thoska soft panniers, it carries what matters — tools, survival gear, and a past he won’t talk about.</p>
-      <img src="https://i.imgur.com/9WCGk3w.png" alt="Helmet">
-      <p>Dual-sport and apocalypse-ready. Built for dust, wind, rain, and silence. Outsider wears this when he disappears between places.</p>
+      <p>Outsider’s trusted machine. Lightweight, fearless, and ready for chaos.</p>
+      <img src="https://i.imgur.com/9WCGk3w.png" alt="Airoh Commander Helmet">
+      <p>Built for dust, wind, rain, and silence.</p>
       <img src="https://i.imgur.com/EhPxlKd.png" alt="Backpack">
       <p>Waterproof. Lightweight. Quiet. Carries maps, notebooks, and spare fate.</p>
     </div>
     <div class="gear-box">
-      <h3>Mercenary's Gear</h3>
-      <img src="https://i.imgur.com/N0zs1X0.png" alt="Rifle">
-      <p>Standard issue for control. Reliable, cold, and built to strike fear. Mercenaries carry them as tools of dominance.</p>
-      <img src="https://i.imgur.com/v2FjXfw.png" alt="Radio">
-      <p>Used to report back or call for suppression. Always active. Always watched. Silence is not an option.</p>
+      <img src="https://i.imgur.com/clLVmhG.png" alt="Mercenary Gear">
+      <p><strong>Mercenaries:</strong> Hardened by orders, driven by control. They patrol the ashes and obey without question.</p>
+      <h3>Mercenaries' Gear</h3>
+      <img src="https://i.imgur.com/cDx6Xiv.png" alt="Dust Wolf">
+      <p>Dust Wolf — Armored and armed, it dominates rough terrain with turret support and reinforced plating.</p>
+      <img src="https://i.imgur.com/9o73AU7.png" alt="Rifle">
+      <p>Factory-standard rifle with 5.56mm rounds, extended mags, and sealed internals — built for dust, fire, and control.</p>
+      <img src="https://i.imgur.com/my5Z0JM.png" alt="Sidearm">
+      <p>Built for battlefield comms and impact resilience, the EchoShell features an integrated intercom headset, reinforced polymer shell.</p>
     </div>
   </div>
 
+  <div class="quote-section">
+    <h2>Words of the Wasteland</h2>
+    <p id="quoteDisplay">“The map is not the territory.”</p>
+    <button onclick="generateQuote()">More Wisdom</button>
+  </div>
+
+  <div class="recruit-section">
+    <h2>🔧 Join the Resistance</h2>
+    <p>If you're fueled by grit, silence, and rebellion — maybe you're one of us. Outsider is recruiting. No resumes, just resolve.</p>
+  </div>
+
+  <div class="quiz-section">
+    <h2>🎯 Are You an Outsider?</h2>
+    <p>Do you trust silence more than words?</p>
+    <button onclick="alert('Welcome, Outsider.')">Yes</button>
+    <button onclick="alert('Maybe one day...')">No</button>
+  </div>
+
   <script>
-    const apocalypseDate = new Date("2030-01-01T00:00:00Z").getTime();
-    setInterval(() => {
-      const now = new Date().getTime();
-      const distance = now - apocalypseDate;
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      document.getElementById("countdown").innerText = `${days} days since the apocalypse`;
-    }, 1000);
+    const startDate = new Date("2020-01-01T00:00:00Z");
+    const countdown = document.getElementById("countdown");
+    function updateCountdown() {
+      const now = new Date();
+      const diffTime = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+      countdown.textContent = `${diffTime} days`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 86400000);
+
+    function generateQuote() {
+      const quotes = [
+        "“The map is not the territory.”",
+        "“In silence, truth emerges.”",
+        "“Not all who wander are lost. Some are hunting.”",
+        "“Rust speaks louder than gold.”",
+        "“To vanish is to survive.”"
+      ];
+      document.getElementById("quoteDisplay").textContent = quotes[Math.floor(Math.random() * quotes.length)];
+    }
   </script>
 </body>
 </html>
