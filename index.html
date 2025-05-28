@@ -17,7 +17,14 @@
     }
     h1 {
       font-size: 3em;
+      letter-spacing: 2px;
       margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin: auto;
+      line-height: 1.6;
     }
     .highlight {
       color: #ff6600;
@@ -28,88 +35,73 @@
       height: 180px;
       border-radius: 50%;
       border: 3px solid #ff6600;
-      object-fit: cover;
       margin-bottom: 20px;
+      object-fit: cover;
     }
-    .section {
+    .gear-pair {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
       margin-top: 40px;
-      padding: 30px;
-      background: rgba(0, 0, 0, 0.7);
+    }
+    .gear-box {
+      width: 45%;
+      background: rgba(28, 28, 28, 0.9);
+      padding: 20px;
       border: 2px solid #ff6600;
       border-radius: 10px;
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
     }
-    .section h2 {
+    .gear-box img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .gear-box h3 {
       color: #ff6600;
-      margin-bottom: 20px;
+      margin: 10px 0;
     }
-    .gear-columns {
+    .gear-box p {
+      font-style: italic;
+    }
+    .gear-section-container {
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 20px;
+      gap: 40px;
+      margin-top: 40px;
     }
-    .gear-column {
-      width: 48%;
+    .gear-section {
+      padding: 30px;
+      background-color: rgba(28, 28, 28, 0.85);
+      border: 2px solid #ff6600;
+      border-radius: 10px;
+      max-width: 700px;
     }
-    .gear-title {
+    .gear-section h2 {
       color: #ff6600;
-      font-size: 1.5em;
-      margin-bottom: 10px;
+      font-size: 2em;
+      margin-bottom: 20px;
     }
     .gear-item {
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
     .gear-photo {
       width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
       border: 2px solid #ff6600;
-      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .gear-info h3 {
+      color: #eee;
+      font-size: 1.5em;
       margin-bottom: 10px;
     }
-    .gear-description {
+    .gear-info p {
       font-size: 1em;
       color: #ccc;
-    }
-    .clock {
-      font-size: 2em;
-      font-family: 'Courier New', Courier, monospace;
-      color: #00ffcc;
-      margin: 10px 0;
-    }
-    .compass-video {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid #ff6600;
-      z-index: 999;
-    }
-    .compass-video video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    button {
-      background: #ff6600;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin-top: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      border-radius: 5px;
-    }
-    .quote-box {
-      margin: 20px 0;
-      font-style: italic;
-    }
-    .recruit-box, .quiz-box, .journey-box {
-      margin: 30px 0;
+      line-height: 1.6;
     }
     .instagram-link {
       position: fixed;
@@ -126,6 +118,38 @@
       color: #ff6600;
       text-decoration: none;
     }
+    .compass-video {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 150px;
+      height: 150px;
+      z-index: 999;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #ff6600;
+    }
+    .compass-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #countdown {
+      font-size: 2.5em;
+      font-family: 'Courier New', Courier, monospace;
+      color: #00ffcc;
+      text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+    }
+    button {
+      margin-top: 10px;
+      background-color: #ff6600;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
@@ -136,93 +160,47 @@
   </div>
 
   <img src="https://i.imgur.com/pqwLA55.png" alt="Outsider Profile" class="profile-photo">
-  <h1>Welcome to <span class="highlight">Outsider</span></h1>
-  <p>A space for those who ride alone and dream in dust.</p>
+  <h1>Welcome to Outsider</h1>
+  <p>A digital space for the ones who walk <span class="highlight">off the map</span>, who wander on motorbikes and dream with the stars.</p>
 
-  <div class="section">
+  <div class="clock-section">
     <h2>Days Since the Apocalypse</h2>
-    <div id="countdown" class="clock"></div>
+    <div id="countdown"></div>
   </div>
 
-  <div class="section">
-    <h2>Outsider's Codex</h2>
-    <div id="quote-box" class="quote-box">"The road teaches what comfort hides."</div>
-    <button onclick="generateQuote()">More Wisdom</button>
-  </div>
-
-  <div class="section journey-box">
-    <h2>Journey Log</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li>Week 1: Entered the Wastes. Found a ruined checkpoint. Kept riding.</li>
-      <li>Week 2: Fixed the fuel line with a shoelace and luck.</li>
-      <li>Week 3: Met no one. Trust remains low. Dust remains high.</li>
-      <li>Week 4: Spotted tracks. Not alone anymore.</li>
-      <li>Week 5: Saw the Factory from a ridge. Time is ticking.</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Outsider vs Mercenaries</h2>
-    <div class="gear-columns">
-      <div class="gear-column">
-        <div class="gear-title">Outsider's Gear</div>
-        <div class="gear-item">
-          <img src="https://i.imgur.com/vrxqPMR.png" class="gear-photo">
-          <div class="gear-description">KTM 390 Adventure — dusty, loyal, and loud.</div>
-        </div>
-        <div class="gear-item">
-          <img src="https://i.imgur.com/9WCGk3w.png" class="gear-photo">
-          <div class="gear-description">Airoh Commander Helmet — for dust and silence.</div>
-        </div>
-        <div class="gear-item">
-          <img src="https://i.imgur.com/EhPxlKd.png" class="gear-photo">
-          <div class="gear-description">30L Rolltop Backpack — holds past and maps.</div>
-        </div>
-        <div class="gear-item">
-          <img src="https://i.imgur.com/0Hz1x4k.png" class="gear-photo">
-          <div class="gear-description">Rusted Handgun — not for show. For ends.</div>
-        </div>
-      </div>
-
-      <div class="gear-column">
-        <div class="gear-title">Mercenaries' Gear</div>
-        <div class="gear-item">
-          <img src="https://i.imgur.com/clLVmhG.png" class="gear-photo">
-          <div class="gear-description">They obey, they patrol, they carry order on their backs.</div>
-        </div>
-      </div>
+  <div class="gear-pair">
+    <div class="gear-box">
+      <h3>Outsider</h3>
+      <img src="https://i.imgur.com/BhU2EPI.png" alt="Outsider">
+      <p>Marked by ruin, fueled by purpose. He rides alone and strikes without warning.</p>
     </div>
-    <p style="margin-top: 20px;"><strong>Outsider:</strong> Marked by ruin, fueled by purpose. He rides alone and strikes without warning.</p>
-    <p><strong>Mercenaries:</strong> Hardened by orders, driven by control. They patrol the ashes and obey without question.</p>
+    <div class="gear-box">
+      <h3>Mercenary Unit Alpha</h3>
+      <img src="https://i.imgur.com/clLVmhG.png" alt="Mercenary">
+      <p>Hardened by orders, driven by control. They patrol the ashes and obey without question.</p>
+    </div>
   </div>
 
-  <div class="section recruit-box">
-    <h2>🛠 Join the Resistance</h2>
-    <p>If you're fueled by grit, silence, and rebellion — maybe you're one of us. Outsider is recruiting. No resumes, just resolve.</p>
-  </div>
-
-  <div class="section quiz-box">
-    <h2>🎯 Are You an Outsider?</h2>
-    <div id="quiz"></div>
-  </div>
-
-  <div class="instagram-link">
-    <a href="https://www.instagram.com/rideinapocalypse/" target="_blank"><i class="fab fa-instagram"></i> Follow</a>
+  <div class="gear-pair">
+    <div class="gear-box">
+      <h3>Outsider's Gear</h3>
+      <img src="https://i.imgur.com/vrxqPMR.png" alt="KTM 390 Adventure">
+      <p>Outsider’s trusted machine. Lightweight, fearless, and ready for chaos. Outfitted with Thoska soft panniers, it carries what matters — tools, survival gear, and a past he won’t talk about.</p>
+      <img src="https://i.imgur.com/9WCGk3w.png" alt="Helmet">
+      <p>Dual-sport and apocalypse-ready. Built for dust, wind, rain, and silence. Outsider wears this when he disappears between places.</p>
+      <img src="https://i.imgur.com/EhPxlKd.png" alt="Backpack">
+      <p>Waterproof. Lightweight. Quiet. Carries maps, notebooks, and spare fate.</p>
+    </div>
+    <div class="gear-box">
+      <h3>Mercenary's Gear</h3>
+      <img src="https://i.imgur.com/N0zs1X0.png" alt="Rifle">
+      <p>Standard issue for control. Reliable, cold, and built to strike fear. Mercenaries carry them as tools of dominance.</p>
+      <img src="https://i.imgur.com/v2FjXfw.png" alt="Radio">
+      <p>Used to report back or call for suppression. Always active. Always watched. Silence is not an option.</p>
+    </div>
   </div>
 
   <script>
-    function generateQuote() {
-      const quotes = [
-        "The road teaches what comfort hides.",
-        "Freedom isn’t given — it’s taken with fuel and fury.",
-        "The system failed — I didn’t.",
-        "Survival is the new rebellion.",
-        "Grit over glitter. Always."
-      ];
-      const box = document.getElementById("quote-box");
-      box.innerText = quotes[Math.floor(Math.random() * quotes.length)];
-    }
-
     const apocalypseDate = new Date("2030-01-01T00:00:00Z").getTime();
     setInterval(() => {
       const now = new Date().getTime();
@@ -230,35 +208,6 @@
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       document.getElementById("countdown").innerText = `${days} days since the apocalypse`;
     }, 1000);
-
-    const quizData = [
-      { q: "Do you trust silence more than words?", a: null },
-      { q: "Would you cross a border without asking who drew it?", a: null },
-      { q: "Can you fix more with duct tape than tech?", a: null }
-    ];
-    let quizIndex = 0;
-    const quizBox = document.getElementById("quiz");
-
-    function renderQuiz() {
-      if (quizIndex < quizData.length) {
-        const q = quizData[quizIndex];
-        quizBox.innerHTML = `
-          <p>${q.q}</p>
-          <button onclick="answerQuiz(true)">Yes</button>
-          <button onclick="answerQuiz(false)">No</button>
-        `;
-      } else {
-        quizBox.innerHTML = `<p>You may not be Outsider... but the road might still change you.</p>`;
-      }
-    }
-
-    function answerQuiz(answer) {
-      quizData[quizIndex].a = answer;
-      quizIndex++;
-      renderQuiz();
-    }
-
-    renderQuiz();
   </script>
 </body>
 </html>
