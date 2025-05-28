@@ -103,7 +103,7 @@
       margin-top: 20px;
     }
 
-    .quote-button {
+    .quote-button, .quiz-button {
       background-color: #ff6600;
       color: #111;
       font-weight: bold;
@@ -148,6 +148,26 @@
       height: 100%;
       object-fit: cover;
     }
+
+    .quiz-question {
+      margin: 20px 0;
+    }
+
+    .quiz-options button {
+      margin: 5px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      background-color: #222;
+      color: #ff6600;
+      border: 1px solid #ff6600;
+      cursor: pointer;
+    }
+
+    .quiz-result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ff6600;
+    }
   </style>
 </head>
 <body>
@@ -162,90 +182,54 @@
   <p>A digital space for the ones who walk <span class="highlight">off the map</span>, who wander on motorbikes and dream with the stars.</p>
 
   <div class="section">
-    <h2>About Outsider</h2>
-    <p>Outsider is more than a name — it's a mindset. A wanderer, a lone rider crossing forgotten roads and abandoned cities. Once part of the system, now forging a path of his own — slow, deliberate, and free.</p>
-  </div>
-
-  <div class="section">
-    <h2>Outsider's Gear</h2>
-    <div class="gear-item">
-      <img src="https://i.imgur.com/vrxqPMR.png" alt="KTM 390 Adventure" class="gear-photo">
-      <div class="gear-info">
-        <h3>KTM 390 Adventure</h3>
-        <p>Lightweight, fearless, and ready for chaos.</p>
-      </div>
+    <h2>Mini Quiz: Are You an Outsider?</h2>
+    <div class="quiz-question" id="quiz-question">Do you trust a map or your instincts?</div>
+    <div class="quiz-options">
+      <button onclick="nextQuestion(1)">Map</button>
+      <button onclick="nextQuestion(2)">Instincts</button>
     </div>
-    <div class="gear-item">
-      <img src="https://i.imgur.com/9WCGk3w.png" alt="Airoh Commander Helmet" class="gear-photo">
-      <div class="gear-info">
-        <h3>Airoh Commander Helmet</h3>
-        <p>Dual-sport and apocalypse-ready. Built for dust, wind, rain, and silence. Outsider wears this when he disappears between places.</p>
-      </div>
-    </div>
-    <div class="gear-item">
-      <img src="https://i.imgur.com/EhPxlKd.png" alt="Rolltop Backpack" class="gear-photo">
-      <div class="gear-info">
-        <h3>30L Rolltop Backpack</h3>
-        <p>Waterproof. Lightweight. Quiet. Carries maps, notebooks, and spare fate.</p>
-      </div>
-    </div>
-    <div class="gear-item">
-      <img src="https://i.imgur.com/0Hz1x4k.png" alt="Rusted Handgun" class="gear-photo">
-      <div class="gear-info">
-        <h3>Rusted Handgun</h3>
-        <p>Not for show. Not for glory. This worn-out sidearm tells no stories — but it’s been in more than one.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Journey Log</h2>
-    <div class="log-entry">
-      <span>Week 01</span>
-      Entered the scorched highway. Silence louder than engines.
-    </div>
-    <div class="log-entry">
-      <span>Week 02</span>
-      Found an abandoned fuel station. Left a mark on the rusted pump.
-    </div>
-    <div class="log-entry">
-      <span>Week 03</span>
-      Bypassed a fallen bridge. Trust the map, but only the one you drew.
-    </div>
-    <div class="log-entry">
-      <span>Week 04</span>
-      Spotted smoke near the horizon. Could be brothers. Could be bait.
-    </div>
-    <div class="log-entry">
-      <span>Week 05</span>
-      Camped in a dry canyon. Stars above, rifle beside. Still breathing.
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Outsider’s Wisdom</h2>
-    <div class="quote-box" id="quote-box">“The path is quiet for those who no longer ask for directions.”</div>
-    <button class="quote-button" onclick="generateQuote()">New Quote</button>
-  </div>
-
-  <div class="instagram-link">
-    <a href="https://www.instagram.com/rideinapocalypse/" target="_blank">
-      <i class="fab fa-instagram"></i> @rideinapocalypse
-    </a>
+    <div class="quiz-result" id="quiz-result"></div>
   </div>
 
   <script>
-    const quotes = [
-      "The path is quiet for those who no longer ask for directions.",
-      "Fuel is hope. Dust is memory. Ride is purpose.",
-      "He who carries nothing fears no loss.",
-      "There is no final stop — only places you stay longer.",
-      "If you listen, even silence has tire tracks."
+    const questions = [
+      {
+        q: "Do you trust a map or your instincts?",
+        a: ["Map", "Instincts"]
+      },
+      {
+        q: "Do you stop for shelter or ride through the storm?",
+        a: ["Shelter", "Ride through"]
+      },
+      {
+        q: "What's heavier — a loaded gun or a silent regret?",
+        a: ["Gun", "Regret"]
+      }
     ];
 
-    function generateQuote() {
-      const box = document.getElementById('quote-box');
-      box.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+    let current = 0;
+    let outsiderScore = 0;
+
+    function nextQuestion(choice) {
+      if (choice === 2) outsiderScore++;
+      current++;
+      const qBox = document.getElementById("quiz-question");
+      const btns = document.querySelector(".quiz-options");
+      const result = document.getElementById("quiz-result");
+
+      if (current < questions.length) {
+        qBox.innerText = questions[current].q;
+        btns.innerHTML = `
+          <button onclick="nextQuestion(1)">${questions[current].a[0]}</button>
+          <button onclick="nextQuestion(2)">${questions[current].a[1]}</button>
+        `;
+      } else {
+        qBox.style.display = "none";
+        btns.style.display = "none";
+        result.innerText = outsiderScore >= 2
+          ? "You are an Outsider. The road is yours."
+          : "You’re not quite there... but the desert welcomes all who try.";
+      }
     }
   </script>
 </body>
