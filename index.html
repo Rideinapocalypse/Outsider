@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Outsider</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
-      margin: 0;
+      background-color: #111;
       background-image: url('https://i.imgur.com/gmnDGNe.png');
       background-size: cover;
       background-position: center;
@@ -14,7 +15,6 @@
       font-family: 'Arial', sans-serif;
       text-align: center;
       padding: 50px;
-      overflow-x: hidden;
     }
 
     h1 {
@@ -44,10 +44,10 @@
       object-fit: cover;
     }
 
-    .about-section, .gear-section, .log-section, .quote-section {
+    .about-section, .gear-section {
       margin-top: 60px;
       padding: 30px;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(28, 28, 28, 0.85);
       border: 2px solid #ff6600;
       border-radius: 10px;
       max-width: 800px;
@@ -55,13 +55,15 @@
       margin-right: auto;
     }
 
-    .about-section h2,
-    .gear-section h2,
-    .log-section h2,
-    .quote-section h2 {
+    .about-section h2, .gear-section h2 {
       color: #ff6600;
       font-size: 2em;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .about-section p, .gear-info p {
+      font-size: 1.1em;
+      line-height: 1.6;
     }
 
     .gear-item {
@@ -86,86 +88,30 @@
       margin-bottom: 10px;
     }
 
-    .gear-info p {
-      font-size: 1em;
-      color: #ccc;
-      line-height: 1.6;
-    }
-
-    .log-entry {
-      margin-bottom: 30px;
-      text-align: left;
-    }
-
-    .log-entry h3 {
-      color: #eee;
-      font-size: 1.2em;
-      margin-bottom: 5px;
-    }
-
-    .log-entry p {
-      font-size: 1em;
-      color: #bbb;
-      line-height: 1.5;
-    }
-
-    .quote-text {
-      font-size: 1.2em;
-      font-style: italic;
-      color: #ccc;
-      margin-bottom: 20px;
-    }
-
-    .quote-button {
+    /* Instagram Button in Bottom Right */
+    .instagram-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
       background-color: #ff6600;
       color: #111;
+      border-radius: 30px;
       padding: 10px 20px;
-      font-size: 1em;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .quote-button:hover {
-      background-color: #ff8533;
-    }
-
-    /* Side vertical text using <br> */
-    .side-text {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.9em;
-      color: rgba(255, 255, 255, 0.25);
+      text-decoration: none;
       font-weight: bold;
-      font-family: monospace;
-      line-height: 1.1;
-      text-align: center;
-      white-space: nowrap;
-      pointer-events: none;
+      font-size: 1em;
+      z-index: 999;
+      box-shadow: 0 0 10px rgba(255, 102, 0, 0.6);
+      transition: background-color 0.3s ease;
     }
 
-    .left-text {
-      left: 10px;
-    }
-
-    .right-text {
-      right: 10px;
+    .instagram-float:hover {
+      background-color: #e65500;
     }
   </style>
 </head>
 <body>
 
-  <!-- Vertical Side Text (Manual line break version) -->
-  <div class="side-text left-text">
-    G<br>R<br>I<br>T<br><br>O<br>V<br>E<br>R<br><br>G<br>L<br>I<br>T<br>T<br>E<br>R
-  </div>
-
-  <div class="side-text right-text">
-    N<br>O<br>T<br><br>A<br>L<br>L<br><br>W<br>H<br>O<br><br>D<br>I<br>S<br>A<br>P<br>P<br>E<br>A<br>R<br><br>A<br>R<br>E<br><br>L<br>O<br>S<br>T
-  </div>
-
-  <!-- Main Content -->
   <img src="https://i.imgur.com/pqwLA55.png" alt="Outsider Profile" class="profile-photo">
   <h1>Welcome to Outsider</h1>
   <p>
@@ -189,14 +135,13 @@
       <div class="gear-info">
         <h3>KTM 390 Adventure</h3>
         <p>
-          Outsider’s trusted machine. Lightweight, fearless, and ready for chaos.
-          Outfitted with <strong>Thoska soft panniers</strong>, it carries what matters — tools, survival gear, and a past he won’t talk about.
+          Outsider’s trusted machine. Lightweight, fearless, and ready for chaos. Outfitted with <strong>Thoska soft panniers</strong>, it carries what matters — tools, survival gear, and a past he won’t talk about.
         </p>
       </div>
     </div>
 
     <div class="gear-item">
-      <img src="https://i.imgur.com/9WCGk3w.png" alt="Helmet" class="gear-photo">
+      <img src="https://i.imgur.com/9WCGk3w.png" alt="Airoh Commander Helmet" class="gear-photo">
       <div class="gear-info">
         <h3>Airoh Commander Helmet</h3>
         <p>
@@ -206,7 +151,7 @@
     </div>
 
     <div class="gear-item">
-      <img src="https://i.imgur.com/EhPxlKd.png" alt="Backpack" class="gear-photo">
+      <img src="https://i.imgur.com/EhPxlKd.png" alt="Tactical Rolltop Backpack" class="gear-photo">
       <div class="gear-info">
         <h3>30L Rolltop Backpack</h3>
         <p>
@@ -226,49 +171,10 @@
     </div>
   </div>
 
-  <div class="log-section">
-    <h2>Journey Log</h2>
-
-    <div class="log-entry">
-      <h3>DAY 12 – THE FACTORY</h3>
-      <p>Left before sunrise. Smoke still rises from the east. The map said there was nothing here, but I heard machines through the wind.</p>
-    </div>
-
-    <div class="log-entry">
-      <h3>DAY 41 – RADIO BLACKOUT</h3>
-      <p>Signal’s gone. Even static is quiet now. I passed a sign that said “Welcome to Silence.” Makes sense.</p>
-    </div>
-
-    <div class="log-entry">
-      <h3>DAY 88 – FROZEN ZONE</h3>
-      <p>The cold isn’t just weather. It’s something else. Found an old road marker with my name carved in it. I didn’t put it there.</p>
-    </div>
-  </div>
-
-  <div class="quote-section">
-    <h2>Outsider's Wisdom</h2>
-    <p id="quote-display" class="quote-text">
-      “Not all those who disappear are lost.”
-    </p>
-    <button onclick="generateQuote()" class="quote-button">Get a New Quote</button>
-  </div>
-
-  <script>
-    const quotes = [
-      "“The road gives no answers, only echoes.”",
-      "“To vanish is not to be forgotten.”",
-      "“Rust remembers what the mind forgets.”",
-      "“The silence between storms is where I live.”",
-      "“I ride to forget what I became.”",
-      "“Fuel burns, but questions last longer.”",
-      "“Scars are just stories that refused to die.”"
-    ];
-
-    function generateQuote() {
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      document.getElementById('quote-display').innerText = quotes[randomIndex];
-    }
-  </script>
+  <!-- Instagram Floating Button -->
+  <a href="https://www.instagram.com/rideinapocalypse/" target="_blank" class="instagram-float">
+    <i class="fab fa-instagram"></i> @rideinapocalypse
+  </a>
 
 </body>
 </html>
