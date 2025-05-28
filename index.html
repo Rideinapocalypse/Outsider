@@ -117,9 +117,10 @@
     }
 
     #countdown {
-      font-size: 2em;
+      font-size: 2.5em;
       font-family: 'Courier New', Courier, monospace;
       color: #00ffcc;
+      text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
     }
   </style>
 </head>
@@ -195,6 +196,7 @@
   <div class="wisdom-section">
     <h2>Words of the Wasteland</h2>
     <p id="quote">“The map is not the territory.”</p>
+    <button onclick="generateQuote()">New Quote</button>
   </div>
 
   <div class="quiz-section">
@@ -231,6 +233,18 @@
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    function generateQuote() {
+      const quotes = [
+        "The road teaches more than books ever could.",
+        "Fuel fades. Grit doesn’t.",
+        "Home is where your tires cool down.",
+        "Only the lost discover the forgotten.",
+        "To be Outsider is to never stop moving."
+      ];
+      const quote = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById("quote").innerText = quote;
+    }
   </script>
 </body>
 </html>
