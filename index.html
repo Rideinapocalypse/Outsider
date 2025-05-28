@@ -17,14 +17,7 @@
     }
     h1 {
       font-size: 3em;
-      letter-spacing: 2px;
       margin-bottom: 20px;
-    }
-    p {
-      font-size: 1.2em;
-      max-width: 600px;
-      margin: auto;
-      line-height: 1.6;
     }
     .highlight {
       color: #ff6600;
@@ -35,55 +28,88 @@
       height: 180px;
       border-radius: 50%;
       border: 3px solid #ff6600;
-      margin-bottom: 20px;
       object-fit: cover;
+      margin-bottom: 20px;
     }
-    .section, .recruit-section, .codex-section, .clock-section, .hunt-section, .wisdom-section, .quiz-section {
-      margin-top: 60px;
+    .section {
+      margin-top: 40px;
       padding: 30px;
-      background-color: rgba(28, 28, 28, 0.85);
+      background: rgba(0, 0, 0, 0.7);
       border: 2px solid #ff6600;
       border-radius: 10px;
-      max-width: 800px;
+      max-width: 1000px;
       margin-left: auto;
       margin-right: auto;
     }
-    .section h2, .recruit-section h2, .codex-section h2, .clock-section h2, .hunt-section h2, .wisdom-section h2, .quiz-section h2 {
+    .section h2 {
       color: #ff6600;
-      font-size: 2em;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
-    .gear-container {
+    .gear-columns {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 40px;
+      justify-content: space-between;
+      gap: 20px;
     }
     .gear-column {
-      flex: 1;
-      min-width: 300px;
-      max-width: 400px;
+      width: 48%;
     }
     .gear-title {
-      font-size: 1.5em;
       color: #ff6600;
-      margin-bottom: 15px;
+      font-size: 1.5em;
+      margin-bottom: 10px;
     }
     .gear-item {
       margin-bottom: 20px;
     }
     .gear-photo {
       width: 100%;
-      border-radius: 10px;
       border: 2px solid #ff6600;
+      border-radius: 8px;
       margin-bottom: 10px;
     }
-    .gear-info h3 {
-      margin-bottom: 10px;
-      color: #eee;
-    }
-    .gear-info p {
+    .gear-description {
+      font-size: 1em;
       color: #ccc;
+    }
+    .clock {
+      font-size: 2em;
+      font-family: 'Courier New', Courier, monospace;
+      color: #00ffcc;
+      margin: 10px 0;
+    }
+    .compass-video {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #ff6600;
+      z-index: 999;
+    }
+    .compass-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    button {
+      background: #ff6600;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    .quote-box {
+      margin: 20px 0;
+      font-style: italic;
+    }
+    .recruit-box, .quiz-box, .journey-box {
+      margin: 30px 0;
     }
     .instagram-link {
       position: fixed;
@@ -100,38 +126,6 @@
       color: #ff6600;
       text-decoration: none;
     }
-    .compass-video {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      width: 150px;
-      height: 150px;
-      z-index: 999;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid #ff6600;
-    }
-    .compass-video video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    #countdown {
-      font-size: 2.5em;
-      font-family: 'Courier New', Courier, monospace;
-      color: #00ffcc;
-      text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
-    }
-    button {
-      margin-top: 10px;
-      background-color: #ff6600;
-      border: none;
-      padding: 10px 20px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 6px;
-    }
   </style>
 </head>
 <body>
@@ -142,109 +136,91 @@
   </div>
 
   <img src="https://i.imgur.com/pqwLA55.png" alt="Outsider Profile" class="profile-photo">
-  <h1>Welcome to Outsider</h1>
-  <p>A digital space for the ones who walk <span class="highlight">off the map</span>, who wander on motorbikes and dream with the stars.</p>
+  <h1>Welcome to <span class="highlight">Outsider</span></h1>
+  <p>A space for those who ride alone and dream in dust.</p>
 
-  <div class="clock-section">
+  <div class="section">
     <h2>Days Since the Apocalypse</h2>
-    <div id="countdown"></div>
+    <div id="countdown" class="clock"></div>
   </div>
 
   <div class="section">
-    <div class="gear-container">
+    <h2>Outsider's Codex</h2>
+    <div id="quote-box" class="quote-box">"The road teaches what comfort hides."</div>
+    <button onclick="generateQuote()">More Wisdom</button>
+  </div>
+
+  <div class="section journey-box">
+    <h2>Journey Log</h2>
+    <ul style="list-style: none; padding: 0;">
+      <li>Week 1: Entered the Wastes. Found a ruined checkpoint. Kept riding.</li>
+      <li>Week 2: Fixed the fuel line with a shoelace and luck.</li>
+      <li>Week 3: Met no one. Trust remains low. Dust remains high.</li>
+      <li>Week 4: Spotted tracks. Not alone anymore.</li>
+      <li>Week 5: Saw the Factory from a ridge. Time is ticking.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Outsider vs Mercenaries</h2>
+    <div class="gear-columns">
       <div class="gear-column">
-        <div class="gear-title">Outsider</div>
+        <div class="gear-title">Outsider's Gear</div>
         <div class="gear-item">
-          <img src="https://i.imgur.com/BhU2EPI.png" alt="Outsider with Blade" class="gear-photo">
-          <div class="gear-info">
-            <p><em>Marked by ruin, fueled by purpose. He rides alone and strikes without warning.</em></p>
-          </div>
+          <img src="https://i.imgur.com/vrxqPMR.png" class="gear-photo">
+          <div class="gear-description">KTM 390 Adventure — dusty, loyal, and loud.</div>
         </div>
-        <div class="gear-info">
-          <h3>KTM 390 Adventure</h3>
-          <p>Outfitted with Thoska panniers — rugged, dirty, and always ready.</p>
-          <h3>Airoh Commander Helmet</h3>
-          <p>Dual-sport. Apocalypse-ready. Worn for wind, dust, and silence.</p>
-          <h3>30L Rolltop Backpack</h3>
-          <p>Waterproof, lightweight, and quiet. Carries spare fate and notebooks.</p>
-          <h3>Rusted Handgun</h3>
-          <p>Not for show. Carried to finish what others start.</p>
+        <div class="gear-item">
+          <img src="https://i.imgur.com/9WCGk3w.png" class="gear-photo">
+          <div class="gear-description">Airoh Commander Helmet — for dust and silence.</div>
+        </div>
+        <div class="gear-item">
+          <img src="https://i.imgur.com/EhPxlKd.png" class="gear-photo">
+          <div class="gear-description">30L Rolltop Backpack — holds past and maps.</div>
+        </div>
+        <div class="gear-item">
+          <img src="https://i.imgur.com/0Hz1x4k.png" class="gear-photo">
+          <div class="gear-description">Rusted Handgun — not for show. For ends.</div>
         </div>
       </div>
+
       <div class="gear-column">
-        <div class="gear-title">Mercenary Unit Alpha</div>
+        <div class="gear-title">Mercenaries' Gear</div>
         <div class="gear-item">
-          <img src="https://i.imgur.com/clLVmhG.png" alt="Mercenary" class="gear-photo">
-          <div class="gear-info">
-            <p><em>Hardened by orders, driven by control. They patrol the ashes and obey without question.</em></p>
-          </div>
-        </div>
-        <div class="gear-info">
-          <h3>Factory-Issue Rifle</h3>
-          <p>Standard-issue. Maintained to lethal precision.</p>
-          <h3>Ballistic Armor</h3>
-          <p>Dark polymer plating, marked with "FACTORY." Unyielding.</p>
-          <h3>Tactical Headset</h3>
-          <p>Encrypted comms. No names. Just orders.</p>
-          <h3>Reinforced Utility Vest</h3>
-          <p>Carried weight without hesitation. Built for control.</p>
+          <img src="https://i.imgur.com/clLVmhG.png" class="gear-photo">
+          <div class="gear-description">They obey, they patrol, they carry order on their backs.</div>
         </div>
       </div>
     </div>
+    <p style="margin-top: 20px;"><strong>Outsider:</strong> Marked by ruin, fueled by purpose. He rides alone and strikes without warning.</p>
+    <p><strong>Mercenaries:</strong> Hardened by orders, driven by control. They patrol the ashes and obey without question.</p>
   </div>
 
-  <div class="wisdom-section">
-    <h2>Words of the Wasteland</h2>
-    <p id="quote">“The map is not the territory.”</p>
-    <button onclick="newQuote()">More Wisdom</button>
+  <div class="section recruit-box">
+    <h2>🛠 Join the Resistance</h2>
+    <p>If you're fueled by grit, silence, and rebellion — maybe you're one of us. Outsider is recruiting. No resumes, just resolve.</p>
   </div>
 
-  <div class="quiz-section">
-    <h2><i class="fa-solid fa-question"></i> Are You an Outsider?</h2>
-    <div id="quiz">
-      <p>Do you feel more alive under stars than ceiling lights?</p>
-      <button onclick="nextQuestion()">Yes</button>
-      <button onclick="nextQuestion()">No</button>
-    </div>
+  <div class="section quiz-box">
+    <h2>🎯 Are You an Outsider?</h2>
+    <div id="quiz"></div>
   </div>
 
-  <div class="recruit-section">
-    <h2>We’re Recruiting</h2>
-    <p>Do you have grit in your veins and a fire that never dies? Outsider is calling those who refuse to fade. Riders, tinkerers, scouts — your journey begins here.</p>
+  <div class="instagram-link">
+    <a href="https://www.instagram.com/rideinapocalypse/" target="_blank"><i class="fab fa-instagram"></i> Follow</a>
   </div>
 
   <script>
-    function newQuote() {
+    function generateQuote() {
       const quotes = [
-        "Grit is the only fuel that burns through the end of the world.",
-        "Freedom isn't found — it's built from ruins.",
-        "The map ends where the brave begin.",
-        "Dust in the lungs, stars in the eyes.",
-        "Some roads are meant to be ridden alone."
+        "The road teaches what comfort hides.",
+        "Freedom isn’t given — it’s taken with fuel and fury.",
+        "The system failed — I didn’t.",
+        "Survival is the new rebellion.",
+        "Grit over glitter. Always."
       ];
-      const index = Math.floor(Math.random() * quotes.length);
-      document.getElementById("quote").innerText = `“${quotes[index]}”`;
-    }
-
-    const questions = [
-      "Do you trust silence more than speeches?",
-      "Have you ever chosen the harder road on purpose?",
-      "Would you trade comfort for the unknown?",
-      "Do you see beauty in ruins?",
-      "Do you ride toward the storm, not away from it?"
-    ];
-
-    let current = 0;
-    function nextQuestion() {
-      const quiz = document.getElementById("quiz");
-      if (current < questions.length) {
-        quiz.innerHTML = `<p>${questions[current]}</p>
-          <button onclick="nextQuestion()">Yes</button>
-          <button onclick="nextQuestion()">No</button>`;
-        current++;
-      } else {
-        quiz.innerHTML = "<p>You might just be one of us.</p>";
-      }
+      const box = document.getElementById("quote-box");
+      box.innerText = quotes[Math.floor(Math.random() * quotes.length)];
     }
 
     const apocalypseDate = new Date("2030-01-01T00:00:00Z").getTime();
@@ -252,8 +228,37 @@
       const now = new Date().getTime();
       const distance = now - apocalypseDate;
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      document.getElementById("countdown").innerText = `${days} days to go`;
+      document.getElementById("countdown").innerText = `${days} days since the apocalypse`;
     }, 1000);
+
+    const quizData = [
+      { q: "Do you trust silence more than words?", a: null },
+      { q: "Would you cross a border without asking who drew it?", a: null },
+      { q: "Can you fix more with duct tape than tech?", a: null }
+    ];
+    let quizIndex = 0;
+    const quizBox = document.getElementById("quiz");
+
+    function renderQuiz() {
+      if (quizIndex < quizData.length) {
+        const q = quizData[quizIndex];
+        quizBox.innerHTML = `
+          <p>${q.q}</p>
+          <button onclick="answerQuiz(true)">Yes</button>
+          <button onclick="answerQuiz(false)">No</button>
+        `;
+      } else {
+        quizBox.innerHTML = `<p>You may not be Outsider... but the road might still change you.</p>`;
+      }
+    }
+
+    function answerQuiz(answer) {
+      quizData[quizIndex].a = answer;
+      quizIndex++;
+      renderQuiz();
+    }
+
+    renderQuiz();
   </script>
 </body>
 </html>
