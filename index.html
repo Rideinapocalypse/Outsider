@@ -43,7 +43,7 @@
       object-fit: cover;
     }
 
-    .section {
+    .section, .recruit-section, .codex-section, .clock-section, .hunt-section {
       margin-top: 60px;
       padding: 30px;
       background-color: rgba(28, 28, 28, 0.85);
@@ -54,7 +54,7 @@
       margin-right: auto;
     }
 
-    .section h2 {
+    .section h2, .recruit-section h2, .codex-section h2, .clock-section h2, .hunt-section h2 {
       color: #ff6600;
       font-size: 2em;
       margin-bottom: 15px;
@@ -81,17 +81,6 @@
       color: #ccc;
     }
 
-    .quote-button, .quiz-button {
-      background-color: #ff6600;
-      color: #111;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 5px;
-      border: none;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-
     .instagram-link {
       position: fixed;
       bottom: 20px;
@@ -113,8 +102,8 @@
       position: fixed;
       top: 20px;
       left: 20px;
-      width: 120px;
-      height: 120px;
+      width: 150px;
+      height: 150px;
       z-index: 999;
       border-radius: 50%;
       overflow: hidden;
@@ -125,49 +114,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-
-    .quiz-question {
-      margin: 20px 0;
-    }
-
-    .quiz-options button {
-      margin: 5px;
-      padding: 10px 15px;
-      border-radius: 5px;
-      background-color: #222;
-      color: #ff6600;
-      border: 1px solid #ff6600;
-      cursor: pointer;
-    }
-
-    .quiz-result {
-      margin-top: 15px;
-      font-weight: bold;
-      color: #ff6600;
-    }
-
-    .recruit-section {
-      margin-top: 60px;
-      padding: 30px;
-      background-color: rgba(28, 28, 28, 0.85);
-      border: 2px dashed #ff6600;
-      border-radius: 10px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .recruit-section h2 {
-      color: #ff6600;
-      font-size: 2em;
-      margin-bottom: 15px;
-    }
-
-    .recruit-section p {
-      color: #ccc;
-      font-size: 1.1em;
-      line-height: 1.6;
     }
   </style>
 </head>
@@ -214,14 +160,25 @@
     </div>
   </div>
 
-  <div class="section">
-    <h2>Mini Quiz: Are You an Outsider?</h2>
-    <div class="quiz-question" id="quiz-question">Do you trust a map or your instincts?</div>
-    <div class="quiz-options">
-      <button onclick="nextQuestion(1)">Map</button>
-      <button onclick="nextQuestion(2)">Instincts</button>
-    </div>
-    <div class="quiz-result" id="quiz-result"></div>
+  <div class="clock-section">
+    <h2>Apocalypse Countdown</h2>
+    <p id="countdown"></p>
+  </div>
+
+  <div class="hunt-section">
+    <h2>Scavenger Hunt</h2>
+    <p>Hidden marks across this page lead to a secret. Tap them in the right order to unlock Outsider’s message...</p>
+  </div>
+
+  <div class="codex-section">
+    <h2>Wasteland Codex</h2>
+    <p>
+      <strong>Dust Trail:</strong> Path where whispers of the old world blow.<br>
+      <strong>The Factory:</strong> Power center of the oppressors. Burned, but not forgotten.<br>
+      <strong>Cracked Compass:</strong> Symbol of direction beyond logic.<br>
+      <strong>Fuel Card:</strong> The last remaining currency in the ashes.<br>
+      <strong>Watchers:</strong> Silent drones that record but never act.
+    </p>
   </div>
 
   <div class="recruit-section">
@@ -234,37 +191,30 @@
     </p>
   </div>
 
+  <div class="instagram-link">
+    <a href="https://www.instagram.com/rideinapocalypse/" target="_blank">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+  </div>
+
   <script>
-    const questions = [
-      { q: "Do you trust a map or your instincts?", a: ["Map", "Instincts"] },
-      { q: "Do you stop for shelter or ride through the storm?", a: ["Shelter", "Ride through"] },
-      { q: "What's heavier — a loaded gun or a silent regret?", a: ["Gun", "Regret"] }
-    ];
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 7);
 
-    let current = 0;
-    let outsiderScore = 0;
+    function updateCountdown() {
+      const now = new Date();
+      const distance = targetDate - now;
 
-    function nextQuestion(choice) {
-      if (choice === 2) outsiderScore++;
-      current++;
-      const qBox = document.getElementById("quiz-question");
-      const btns = document.querySelector(".quiz-options");
-      const result = document.getElementById("quiz-result");
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      if (current < questions.length) {
-        qBox.innerText = questions[current].q;
-        btns.innerHTML = `
-          <button onclick="nextQuestion(1)">${questions[current].a[0]}</button>
-          <button onclick="nextQuestion(2)">${questions[current].a[1]}</button>
-        `;
-      } else {
-        qBox.style.display = "none";
-        btns.style.display = "none";
-        result.innerText = outsiderScore >= 2
-          ? "You are an Outsider. The road is yours."
-          : "You’re not quite there... but the desert welcomes all who try.";
-      }
+      document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 </body>
 </html>
