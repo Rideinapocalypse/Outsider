@@ -60,6 +60,18 @@
       margin-bottom: 15px;
     }
 
+    .gear-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .gear-column {
+      flex: 1;
+      min-width: 300px;
+    }
+
     .gear-item {
       margin-bottom: 40px;
     }
@@ -146,129 +158,117 @@
   <h1>Welcome to Outsider</h1>
   <p>A digital space for the ones who walk <span class="highlight">off the map</span>, who wander on motorbikes and dream with the stars.</p>
 
-  <div class="section">
-    <h2>Outsider's Gear</h2>
-    <div class="gear-item">
-      <img src="https://i.imgur.com/vrxqPMR.png" alt="KTM 390 Adventure" class="gear-photo">
-      <div class="gear-info">
-        <h3>KTM 390 Adventure</h3>
-        <p>Outsider’s trusted machine. Lightweight, fearless, and ready for chaos. Outfitted with Thoska soft panniers, it carries what matters — tools, survival gear, and a past he won’t talk about.</p>
-      </div>
-    </div>
-    <div class="gear-item">
-      <img src="https://i.imgur.com/9WCGk3w.png" alt="Helmet" class="gear-photo">
-      <div class="gear-info">
-        <h3>Airoh Commander Helmet</h3>
-        <p>Dual-sport and apocalypse-ready. Built for dust, wind, rain, and silence. Outsider wears this when he disappears between places.</p>
-      </div>
-    </div>
-    <div class="gear-item">
-      <img src="https://i.imgur.com/EhPxlKd.png" alt="Backpack" class="gear-photo">
-      <div class="gear-info">
-        <h3>30L Rolltop Backpack</h3>
-        <p>Waterproof. Lightweight. Quiet. Carries maps, notebooks, and spare fate. When the world ends, this is the bag you’ll want on your back.</p>
-      </div>
-    </div>
-    <div class="gear-item">
-      <img src="https://i.imgur.com/0Hz1x4k.png" alt="Rusted Handgun" class="gear-photo">
-      <div class="gear-info">
-        <h3>Rusted Handgun</h3>
-        <p>Not for show. Not for glory. This worn-out sidearm tells no stories — but it’s been in more than one. Outsider carries it not to fight, but to finish what others start.</p>
-      </div>
-    </div>
-  </div>
-
   <div class="clock-section">
-    <h2>Apocalypse Aftermath</h2>
-    <p id="countdown"></p>
+    <h2>Days Until the Apocalypse</h2>
+    <div id="countdown"></div>
   </div>
 
   <div class="wisdom-section">
-    <h2>Words of the Wasteland</h2>
-    <p id="quote">“The map is not the territory.”</p>
-    <button onclick="generateQuote()">More Wisdom</button>
+    <h2>Outsider Wisdom</h2>
+    <p id="quote">“Grit is the only fuel that burns through the end of the world.”</p>
+    <button onclick="newQuote()">More Wisdom</button>
   </div>
 
   <div class="quiz-section">
-    <h2>Are You an Outsider?</h2>
-    <p id="question"></p>
-    <div id="answers">
-      <button onclick="recordAnswer(true)">Yes</button>
-      <button onclick="recordAnswer(false)">No</button>
-    </div>
-    <p id="quiz-result"></p>
+    <h2>Mini Quiz: Are You an Outsider?</h2>
+    <div id="quiz"></div>
+    <button onclick="nextQuestion()">Start Quiz</button>
   </div>
 
   <div class="recruit-section">
-    <h2>Recruitment Open</h2>
-    <p>Outsider is calling for riders, thinkers, and rebels. If you believe freedom is worth the dust, and silence is stronger than orders — you may have a place with us.</p>
-    <p><strong>Requirements:</strong> a bike, a soul of fire, and a voice that speaks through action.</p>
-    <p>Apply by riding beyond the last signpost. We’ll find you.</p>
+    <h2>We're Recruiting</h2>
+    <p>The road is long and the nights are cold. If you’ve got the grit, the gear, and a ghost in your past — we want you. Join the resistance. Ride with us.</p>
   </div>
 
-  <div class="instagram-link">
-    <a href="https://www.instagram.com/rideinapocalypse/" target="_blank">
-      <i class="fab fa-instagram"></i> Instagram
-    </a>
+  <div class="section">
+    <h2>Field Gear Inventory</h2>
+    <div class="gear-container">
+      <div class="gear-column">
+        <h3>Outsider's Gear</h3>
+        <div class="gear-item">
+          <img src="https://i.imgur.com/vrxqPMR.png" alt="KTM 390 Adventure" class="gear-photo">
+          <div class="gear-info">
+            <h3>KTM 390 Adventure</h3>
+            <p>Outsider’s trusted machine. Lightweight, fearless, and ready for chaos. Outfitted with Thoska soft panniers, it carries what matters — tools, survival gear, and a past he won’t talk about.</p>
+          </div>
+        </div>
+        <div class="gear-item">
+          <img src="https://i.imgur.com/9WCGk3w.png" alt="Helmet" class="gear-photo">
+          <div class="gear-info">
+            <h3>Airoh Commander Helmet</h3>
+            <p>Dual-sport and apocalypse-ready. Built for dust, wind, rain, and silence. Outsider wears this when he disappears between places.</p>
+          </div>
+        </div>
+        <div class="gear-item">
+          <img src="https://i.imgur.com/EhPxlKd.png" alt="Backpack" class="gear-photo">
+          <div class="gear-info">
+            <h3>30L Rolltop Backpack</h3>
+            <p>Waterproof. Lightweight. Quiet. Carries maps, notebooks, and spare fate. When the world ends, this is the bag you’ll want on your back.</p>
+          </div>
+        </div>
+        <div class="gear-item">
+          <img src="https://i.imgur.com/0Hz1x4k.png" alt="Rusted Handgun" class="gear-photo">
+          <div class="gear-info">
+            <h3>Rusted Handgun</h3>
+            <p>Not for show. Not for glory. This worn-out sidearm tells no stories — but it’s been in more than one. Outsider carries it not to fight, but to finish what others start.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gear-column">
+        <h3>Mercenary's Gear</h3>
+        <div class="gear-item">
+          <img src="https://i.imgur.com/clLVmhG.png" alt="Mercenary" class="gear-photo">
+          <div class="gear-info">
+            <h3>Standard Issue Suit</h3>
+            <p>This is the armor of the enforcer — tactical, cold, impersonal. Built for compliance, not survival. No dust stains here, just iron and orders.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
-    const targetDate = new Date("2024-05-01T00:00:00Z");
-
-    function updateCountdown() {
-      const now = new Date();
-      const distance = now - targetDate;
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s since it all changed.`;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    function generateQuote() {
+    function newQuote() {
       const quotes = [
-        "The road teaches more than books ever could.",
-        "Fuel fades. Grit doesn’t.",
-        "Home is where your tires cool down.",
-        "Only the lost discover the forgotten.",
-        "To be Outsider is to never stop moving."
+        "Grit is the only fuel that burns through the end of the world.",
+        "Freedom isn't found — it's built from ruins.",
+        "The map ends where the brave begin.",
+        "Dust in the lungs, stars in the eyes.",
+        "Some roads are meant to be ridden alone."
       ];
-      const quote = quotes[Math.floor(Math.random() * quotes.length)];
-      document.getElementById("quote").innerText = quote;
+      const index = Math.floor(Math.random() * quotes.length);
+      document.getElementById("quote").innerText = `“${quotes[index]}”`;
     }
 
     const questions = [
-      "Do you feel more alive under stars than ceiling lights?",
-      "Does silence calm you more than applause?",
-      "Can you leave without telling anyone — and smile while doing it?"
+      "Do you trust silence more than speeches?",
+      "Have you ever chosen the harder road on purpose?",
+      "Would you trade comfort for the unknown?",
+      "Do you see beauty in ruins?",
+      "Do you ride toward the storm, not away from it?"
     ];
-    let currentQuestion = 0;
-    let yesCount = 0;
 
-    function showNextQuestion() {
-      if (currentQuestion < questions.length) {
-        document.getElementById("question").innerText = questions[currentQuestion];
-        document.getElementById("quiz-result").innerText = "";
+    let current = 0;
+    function nextQuestion() {
+      const quiz = document.getElementById("quiz");
+      if (current < questions.length) {
+        quiz.innerHTML = `<p>${questions[current]}</p>
+          <button onclick="nextQuestion()">Yes</button>
+          <button onclick="nextQuestion()">No</button>`;
+        current++;
       } else {
-        const result = yesCount >= 2 ? "You already are one of us." : "Maybe you're not ready... yet.";
-        document.getElementById("question").innerText = "";
-        document.getElementById("answers").style.display = "none";
-        document.getElementById("quiz-result").innerHTML = `<strong>${result}</strong>`;
+        quiz.innerHTML = "<p>You might just be one of us.</p>";
       }
     }
 
-    function recordAnswer(answer) {
-      if (answer) yesCount++;
-      currentQuestion++;
-      showNextQuestion();
-    }
-
-    showNextQuestion();
+    const apocalypseDate = new Date("2030-01-01T00:00:00Z").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = apocalypseDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      document.getElementById("countdown").innerText = `${days} days to go`;
+    }, 1000);
   </script>
 </body>
 </html>
