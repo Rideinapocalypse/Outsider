@@ -43,7 +43,7 @@
       object-fit: cover;
     }
 
-    .section, .recruit-section, .codex-section, .clock-section, .hunt-section {
+    .section, .recruit-section, .codex-section, .clock-section, .hunt-section, .wisdom-section, .quiz-section {
       margin-top: 60px;
       padding: 30px;
       background-color: rgba(28, 28, 28, 0.85);
@@ -54,7 +54,7 @@
       margin-right: auto;
     }
 
-    .section h2, .recruit-section h2, .codex-section h2, .clock-section h2, .hunt-section h2 {
+    .section h2, .recruit-section h2, .codex-section h2, .clock-section h2, .hunt-section h2, .wisdom-section h2, .quiz-section h2 {
       color: #ff6600;
       font-size: 2em;
       margin-bottom: 15px;
@@ -115,6 +115,12 @@
       height: 100%;
       object-fit: cover;
     }
+
+    #countdown {
+      font-size: 2em;
+      font-family: 'Courier New', Courier, monospace;
+      color: #00ffcc;
+    }
   </style>
 </head>
 <body>
@@ -161,13 +167,8 @@
   </div>
 
   <div class="clock-section">
-    <h2>Apocalypse Countdown</h2>
+    <h2>Apocalypse Aftermath</h2>
     <p id="countdown"></p>
-  </div>
-
-  <div class="hunt-section">
-    <h2>Scavenger Hunt</h2>
-    <p>Hidden marks across this page lead to a secret. Tap them in the right order to unlock Outsider’s message...</p>
   </div>
 
   <div class="codex-section">
@@ -191,6 +192,22 @@
     </p>
   </div>
 
+  <div class="wisdom-section">
+    <h2>Words of the Wasteland</h2>
+    <p id="quote">“The map is not the territory.”</p>
+  </div>
+
+  <div class="quiz-section">
+    <h2>🎯 Are You an Outsider?</h2>
+    <p><em>Answer honestly:</em></p>
+    <ol>
+      <li>Do you feel more alive under stars than ceiling lights?</li>
+      <li>Does silence calm you more than applause?</li>
+      <li>Can you leave without telling anyone — and smile while doing it?</li>
+    </ol>
+    <p><strong>If you said yes more than once… you already are one of us.</strong></p>
+  </div>
+
   <div class="instagram-link">
     <a href="https://www.instagram.com/rideinapocalypse/" target="_blank">
       <i class="fab fa-instagram"></i> Instagram
@@ -198,19 +215,18 @@
   </div>
 
   <script>
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 7);
+    const targetDate = new Date("2024-05-01T00:00:00Z");
 
     function updateCountdown() {
       const now = new Date();
-      const distance = targetDate - now;
+      const distance = now - targetDate;
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s since it all changed.`;
     }
 
     setInterval(updateCountdown, 1000);
