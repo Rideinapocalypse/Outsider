@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <title>Outsider</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     body {
-      background-color: #111;
-      background-image: url('https://i.imgur.com/gmnDGNe.png');
+      margin: 0;
+      padding: 0;
+      background: url('https://i.imgur.com/gmnDGNe.png') no-repeat center center fixed;
       background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
       color: #eee;
       font-family: 'Arial', sans-serif;
       text-align: center;
-      padding: 50px;
-      margin: 0;
     }
 
     h1 {
       font-size: 3em;
       letter-spacing: 2px;
+      margin-top: 60px;
       margin-bottom: 20px;
+      animation: fadeIn 2s ease-in-out forwards;
     }
 
     p {
@@ -41,14 +41,16 @@
       height: 180px;
       border-radius: 50%;
       border: 3px solid #ff6600;
+      margin-top: 50px;
       margin-bottom: 20px;
       object-fit: cover;
+      animation: pulse 3s infinite;
     }
 
-    .section {
+    .about-section, .gear-section, .log-section, .quote-section {
       margin-top: 60px;
       padding: 30px;
-      background-color: rgba(28, 28, 28, 0.85);
+      background-color: rgba(28, 28, 28, 0.8);
       border: 2px solid #ff6600;
       border-radius: 10px;
       max-width: 800px;
@@ -56,16 +58,17 @@
       margin-right: auto;
     }
 
-    .section h2 {
+    .about-section h2, .gear-section h2, .log-section h2, .quote-section h2 {
       color: #ff6600;
       font-size: 2em;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .gear-item {
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
       margin-bottom: 40px;
     }
 
@@ -75,6 +78,11 @@
       border-radius: 10px;
       border: 2px solid #ff6600;
       margin-bottom: 15px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .gear-photo:hover {
+      transform: scale(1.05);
     }
 
     .gear-info h3 {
@@ -89,146 +97,160 @@
       line-height: 1.6;
     }
 
-    .log-entry {
-      margin: 20px auto;
-      max-width: 600px;
+    .instagram-link {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background-color: #111;
+      border: 2px solid #ff6600;
+      padding: 10px 16px;
+      border-radius: 50px;
       font-size: 1.1em;
-      line-height: 1.6;
-      color: #ccc;
-      text-align: center;
     }
 
-    .log-entry span {
+    .instagram-link a {
       color: #ff6600;
-      font-weight: bold;
-      display: block;
-      margin-bottom: 5px;
+      text-decoration: none;
     }
 
-    .quote-section button {
+    .log-box {
+      background-color: #222;
+      padding: 20px;
+      border: 1px dashed #ff6600;
+      border-radius: 8px;
+      font-size: 1.1em;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .quote-box {
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 8px;
+      border: 2px dashed #ff6600;
+      margin-top: 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-style: italic;
+    }
+
+    .quote-button {
+      margin-top: 15px;
+      padding: 10px 20px;
       background-color: #ff6600;
       border: none;
-      padding: 10px 20px;
-      font-size: 1em;
       color: #111;
-      cursor: pointer;
-      border-radius: 5px;
-      margin-top: 20px;
-    }
-
-    .quote-text {
-      font-style: italic;
-      font-size: 1.3em;
-      margin-top: 20px;
-    }
-
-    .instagram-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #ff6600;
-      color: #111;
-      border-radius: 30px;
-      padding: 10px 20px;
-      text-decoration: none;
       font-weight: bold;
-      font-size: 1em;
-      z-index: 999;
-      box-shadow: 0 0 10px rgba(255, 102, 0, 0.6);
-      transition: background-color 0.3s ease;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
-    .instagram-float:hover {
-      background-color: #e65500;
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
   </style>
 </head>
 <body>
-  <img src="https://i.imgur.com/pqwLA55.png" alt="Outsider Profile" class="profile-photo" />
-  <h1>Welcome to Outsider</h1>
-  <p>A digital space for the ones who walk <span class="highlight">off the map</span>, who wander on motorbikes and dream with the stars.</p>
 
-  <div class="section">
+  <img src="https://i.imgur.com/pqwLA55.png" alt="Outsider Profile" class="profile-photo">
+  <h1>Welcome to Outsider</h1>
+  <p>
+    A digital space for the ones who walk <span class="highlight">off the map</span>, who wander on motorbikes and dream with the stars.
+  </p>
+
+  <div class="about-section" data-aos="fade-up">
     <h2>About Outsider</h2>
-    <p>Outsider is more than a name — it's a mindset. A wanderer, a lone rider crossing forgotten roads and abandoned cities. Once part of the system, now forging a path of his own — slow, deliberate, and free.</p>
+    <p>
+      Outsider is more than a name — it's a mindset. A wanderer, a lone rider crossing forgotten roads and abandoned cities.
+      Once part of the system, now forging a path of his own — slow, deliberate, and free.<br><br>
+      He believes in silence over noise, grit over glitter, and the kind of freedom only dust and fuel can buy.
+    </p>
   </div>
 
-  <div class="section">
+  <div class="gear-section" data-aos="fade-up">
     <h2>Outsider's Gear</h2>
 
     <div class="gear-item">
-      <img src="https://i.imgur.com/vrxqPMR.png" alt="KTM 390 Adventure" class="gear-photo" />
+      <img src="https://i.imgur.com/vrxqPMR.png" alt="KTM 390 Adventure" class="gear-photo">
       <div class="gear-info">
         <h3>KTM 390 Adventure</h3>
-        <p>Outsider’s trusted machine. Lightweight, fearless, and ready for chaos.</p>
+        <p>Outfitted with Thoska panniers, Outsider’s bike carries only what’s necessary: grit, tools, and echoes of the past.</p>
       </div>
     </div>
 
     <div class="gear-item">
-      <img src="https://i.imgur.com/9WCGk3w.png" alt="Helmet" class="gear-photo" />
+      <img src="https://i.imgur.com/9WCGk3w.png" alt="Airoh Commander Helmet" class="gear-photo">
       <div class="gear-info">
         <h3>Airoh Commander Helmet</h3>
-        <p>Built for dust, wind, rain, and silence.</p>
+        <p>Designed for wind, sand, and silence. This helmet knows too many roads to speak of.</p>
       </div>
     </div>
 
     <div class="gear-item">
-      <img src="https://i.imgur.com/EhPxlKd.png" alt="Backpack" class="gear-photo" />
+      <img src="https://i.imgur.com/EhPxlKd.png" alt="Rolltop Backpack" class="gear-photo">
       <div class="gear-info">
         <h3>30L Rolltop Backpack</h3>
-        <p>Waterproof. Carries maps, notebooks, and spare fate.</p>
+        <p>Inside? Maps, relics, and maybe something borrowed from a ghost.</p>
       </div>
     </div>
 
     <div class="gear-item">
-      <img src="https://i.imgur.com/0Hz1x4k.png" alt="Gun" class="gear-photo" />
+      <img src="https://i.imgur.com/0Hz1x4k.png" alt="Handgun" class="gear-photo">
       <div class="gear-info">
         <h3>Rusted Handgun</h3>
-        <p>Not for show. Not for glory. Just a grim companion.</p>
+        <p>He doesn’t draw it often. But when he does, something usually ends.</p>
       </div>
     </div>
   </div>
 
-  <div class="section">
+  <div class="log-section" data-aos="fade-up">
     <h2>Journey Log</h2>
-    <div class="log-entry">
-      <span>Week 01</span>
-      Left the steel and static behind. Camped near a dead mall with wolves howling over broken speakers.
-    </div>
-    <div class="log-entry">
-      <span>Week 02</span>
-      Tank ran dry but the wind pushed me. Found fuel, found silence, found an old tape whispering rebellion.
-    </div>
-    <div class="log-entry">
-      <span>Week 03</span>
-      Rain came like a sermon. I didn’t hide. I stood and let it wash away the last pieces of the man I used to be.
+    <div class="log-box">
+      <p>
+        𓆩☣𓆪 Entered the scorched highway at dawn. Silence louder than engines.  
+        Saw the smoke over the Factory — it’s closer than it should be.  
+        GPS died again. Still, I ride.  
+        The road remembers.
+      </p>
     </div>
   </div>
 
-  <div class="section quote-section">
-    <h2>Outsider’s Wisdom</h2>
-    <div class="quote-text" id="quoteBox">“The road doesn’t end. It fades.”</div>
-    <button onclick="newQuote()">Generate New Quote</button>
+  <div class="quote-section" data-aos="fade-up">
+    <h2>Outsider's Wisdom</h2>
+    <div class="quote-box" id="quote-box">"The path is quiet for those who no longer ask for directions."</div>
+    <button class="quote-button" onclick="generateQuote()">New Quote</button>
   </div>
 
-  <a href="https://www.instagram.com/rideinapocalypse/" target="_blank" class="instagram-float">
-    <i class="fab fa-instagram"></i> @rideinapocalypse
-  </a>
+  <div class="instagram-link">
+    <a href="https://www.instagram.com/rideinapocalypse/" target="_blank">
+      <i class="fab fa-instagram"></i> @rideinapocalypse
+    </a>
+  </div>
 
   <script>
+    AOS.init();
+
     const quotes = [
-      "The road doesn’t end. It fades.",
-      "Some noise is silence in disguise.",
-      "Fuel is memory. Dust is truth.",
-      "Every scar has a map behind it.",
-      "Ride slow. Burn long."
+      "The path is quiet for those who no longer ask for directions.",
+      "Fuel is hope. Dust is memory. Ride is purpose.",
+      "He who carries nothing fears no loss.",
+      "There is no final stop — only places you stay longer.",
+      "If you listen, even silence has tire tracks."
     ];
 
-    function newQuote() {
-      const quoteBox = document.getElementById("quoteBox");
-      const random = Math.floor(Math.random() * quotes.length);
-      quoteBox.textContent = `“${quotes[random]}”`;
+    function generateQuote() {
+      const box = document.getElementById('quote-box');
+      box.textContent = quotes[Math.floor(Math.random() * quotes.length)];
     }
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 </body>
 </html>
