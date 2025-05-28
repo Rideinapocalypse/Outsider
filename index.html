@@ -123,78 +123,95 @@
       text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
     }
 
-    .quiz-section h2::before {
-      content: "\f128";
-      font-family: "Font Awesome 6 Free";
-      font-weight: 900;
-      margin-right: 8px;
-    }
-
-    button.custom-btn {
-      background-color: #222;
-      border: 2px solid #ff6600;
-      color: #ff6600;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    button.custom-btn:hover {
+    button {
+      margin-top: 10px;
       background-color: #ff6600;
-      color: #111;
-    }
-
-    .quiz-options {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
-      margin-top: 15px;
-    }
-
-    .quiz-options button {
-      width: 200px;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
     }
   </style>
 </head>
 <body>
-  <!-- content above remains the same -->
+  <div class="compass-video">
+    <video autoplay muted loop>
+      <source src="https://i.imgur.com/Zfy27Y5.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <img src="https://i.imgur.com/pqwLA55.png" alt="Outsider Profile" class="profile-photo">
+  <h1>Welcome to Outsider</h1>
+  <p>A digital space for the ones who walk <span class="highlight">off the map</span>, who wander on motorbikes and dream with the stars.</p>
+
+  <div class="section">
+    <h2>Outsider's Gear</h2>
+    <div class="gear-item">
+      <img src="https://i.imgur.com/vrxqPMR.png" alt="KTM 390 Adventure" class="gear-photo">
+      <div class="gear-info">
+        <h3>KTM 390 Adventure</h3>
+        <p>Outsider’s trusted machine. Lightweight, fearless, and ready for chaos. Outfitted with Thoska soft panniers, it carries what matters — tools, survival gear, and a past he won’t talk about.</p>
+      </div>
+    </div>
+    <div class="gear-item">
+      <img src="https://i.imgur.com/9WCGk3w.png" alt="Helmet" class="gear-photo">
+      <div class="gear-info">
+        <h3>Airoh Commander Helmet</h3>
+        <p>Dual-sport and apocalypse-ready. Built for dust, wind, rain, and silence. Outsider wears this when he disappears between places.</p>
+      </div>
+    </div>
+    <div class="gear-item">
+      <img src="https://i.imgur.com/EhPxlKd.png" alt="Backpack" class="gear-photo">
+      <div class="gear-info">
+        <h3>30L Rolltop Backpack</h3>
+        <p>Waterproof. Lightweight. Quiet. Carries maps, notebooks, and spare fate. When the world ends, this is the bag you’ll want on your back.</p>
+      </div>
+    </div>
+    <div class="gear-item">
+      <img src="https://i.imgur.com/0Hz1x4k.png" alt="Rusted Handgun" class="gear-photo">
+      <div class="gear-info">
+        <h3>Rusted Handgun</h3>
+        <p>Not for show. Not for glory. This worn-out sidearm tells no stories — but it’s been in more than one. Outsider carries it not to fight, but to finish what others start.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="clock-section">
+    <h2>Apocalypse Aftermath</h2>
+    <p id="countdown"></p>
+  </div>
 
   <div class="wisdom-section">
     <h2>Words of the Wasteland</h2>
     <p id="quote">“The map is not the territory.”</p>
-    <button class="custom-btn" onclick="generateQuote()">More Wisdom</button>
+    <button onclick="generateQuote()">More Wisdom</button>
   </div>
 
   <div class="quiz-section">
     <h2>Are You an Outsider?</h2>
-    <p><em>Answer honestly:</em></p>
-    <div class="quiz-options">
-      <p>Do you feel more alive under stars than ceiling lights?</p>
-      <button class="custom-btn" onclick="quizAnswer(true)">Yes</button>
-      <button class="custom-btn" onclick="quizAnswer(false)">No</button>
-
-      <p>Does silence calm you more than applause?</p>
-      <button class="custom-btn" onclick="quizAnswer(true)">Yes</button>
-      <button class="custom-btn" onclick="quizAnswer(false)">No</button>
-
-      <p>Can you leave without telling anyone — and smile while doing it?</p>
-      <button class="custom-btn" onclick="quizAnswer(true)">Yes</button>
-      <button class="custom-btn" onclick="quizAnswer(false)">No</button>
-
-      <p id="quizResult" style="margin-top: 20px; font-weight: bold;"></p>
+    <p id="question"></p>
+    <div id="answers">
+      <button onclick="recordAnswer(true)">Yes</button>
+      <button onclick="recordAnswer(false)">No</button>
     </div>
+    <p id="quiz-result"></p>
   </div>
 
-  <!-- Instagram link and script remain -->
+  <div class="instagram-link">
+    <a href="https://www.instagram.com/rideinapocalypse/" target="_blank">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+  </div>
+
   <script>
     const targetDate = new Date("2024-05-01T00:00:00Z");
 
     function updateCountdown() {
       const now = new Date();
       const distance = now - targetDate;
+
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -218,17 +235,33 @@
       document.getElementById("quote").innerText = quote;
     }
 
-    let score = 0;
-    let count = 0;
+    const questions = [
+      "Do you feel more alive under stars than ceiling lights?",
+      "Does silence calm you more than applause?",
+      "Can you leave without telling anyone — and smile while doing it?"
+    ];
+    let currentQuestion = 0;
+    let yesCount = 0;
 
-    function quizAnswer(answer) {
-      if (answer) score++;
-      count++;
-      if (count === 3) {
-        const result = score >= 2 ? "You already are one of us." : "You may not be ready... yet.";
-        document.getElementById("quizResult").innerText = result;
+    function showNextQuestion() {
+      if (currentQuestion < questions.length) {
+        document.getElementById("question").innerText = questions[currentQuestion];
+        document.getElementById("quiz-result").innerText = "";
+      } else {
+        const result = yesCount >= 2 ? "You already are one of us." : "Maybe you're not ready... yet.";
+        document.getElementById("question").innerText = "";
+        document.getElementById("answers").style.display = "none";
+        document.getElementById("quiz-result").innerHTML = `<strong>${result}</strong>`;
       }
     }
+
+    function recordAnswer(answer) {
+      if (answer) yesCount++;
+      currentQuestion++;
+      showNextQuestion();
+    }
+
+    showNextQuestion();
   </script>
 </body>
 </html>
