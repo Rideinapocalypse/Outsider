@@ -112,6 +112,13 @@
       font-weight: bold;
       cursor: pointer;
       border-radius: 6px;
+      margin-left: 10px;
+      margin-right: 10px;
+      font-size: 1em;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background-color: #cc5200;
     }
     .quote-section, .recruit-section, .quiz-section, .intro-section, .clock-section {
       background-color: rgba(28, 28, 28, 0.85);
@@ -179,14 +186,15 @@
     <p>If you're fueled by grit, silence, and rebellion — maybe you're one of us. Outsider is recruiting. No resumes, just resolve.</p>
   </div>
 
-  <div class="quiz-section">
+  <div class="quiz-section" id="quizSection">
     <h2>🎯 Are You an Outsider?</h2>
-    <p>Do you trust silence more than words?</p>
-    <button onclick="alert('Welcome, Outsider.')">Yes</button>
-    <button onclick="alert('Maybe one day...')">No</button>
+    <div id="quizContent">
+      <!-- Quiz will render here -->
+    </div>
   </div>
 
   <script>
+    // Countdown
     const startDate = new Date("2020-01-01T00:00:00Z");
     const countdown = document.getElementById("countdown");
     function updateCountdown() {
@@ -197,6 +205,7 @@
     updateCountdown();
     setInterval(updateCountdown, 86400000);
 
+    // Quote
     function generateQuote() {
       const quotes = [
         "“The map is not the territory.”",
@@ -207,6 +216,77 @@
       ];
       document.getElementById("quoteDisplay").textContent = quotes[Math.floor(Math.random() * quotes.length)];
     }
+
+    // QUIZ LOGIC
+    const quizQuestions = [
+      {
+        question: "Do you trust silence more than words?",
+        answers: ["Yes", "No"]
+      },
+      {
+        question: "Do you believe the journey matters more than the destination?",
+        answers: ["Yes", "No"]
+      },
+      {
+        question: "Would you choose solitude over comfort?",
+        answers: ["Yes", "No"]
+      },
+      {
+        question: "Does the unknown excite you?",
+        answers: ["Yes", "No"]
+      }
+    ];
+
+    let currentQuestion = 0;
+    let outsiderPoints = 0;
+
+    function showQuestion() {
+      const q = quizQuestions[currentQuestion];
+      document.getElementById('quizContent').innerHTML = `
+        <p style="font-size:1.2em; margin-bottom: 24px;">${q.question}</p>
+        <button onclick="answerQuiz('Yes')">${q.answers[0]}</button>
+        <button onclick="answerQuiz('No')">${q.answers[1]}</button>
+      `;
+    }
+
+    function answerQuiz(ans) {
+      if (ans === "Yes") outsiderPoints++;
+      currentQuestion++;
+      if (currentQuestion < quizQuestions.length) {
+        showQuestion();
+      } else {
+        let resultText = "";
+        if (outsiderPoints >= 3) {
+          resultText = `<span class="highlight">Welcome, Outsider.</span><br>You walk your own road.`;
+        } else if (outsiderPoints === 2) {
+          resultText = `<span class="highlight">You’re close.</span><br>Sometimes you’re in, sometimes out.`;
+        } else {
+          resultText = `<span class="highlight">Maybe one day...</span><br>But for now, you’re still on the map.`;
+        }
+        document.getElementById('quizContent').innerHTML = `<p style="font-size:1.3em; margin-bottom: 24px;">${resultText}</p>
+          <button onclick="restartQuiz()">Try Again</button>`;
+        currentQuestion = 0;
+        outsiderPoints = 0;
+      }
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      outsiderPoints = 0;
+      showQuestion();
+    }
+
+    // Initialize the quiz on load
+    showQuestion();
+
   </script>
+
+  <!-- Sticky Instagram Link -->
+  <div class="instagram-link">
+    <a href="https://www.instagram.com/rideinapocalypse/" target="_blank">
+      <i class="fab fa-instagram"></i> @rideinapocalypse
+    </a>
+  </div>
+
 </body>
 </html>
