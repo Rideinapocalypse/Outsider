@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Outsider</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     body {
@@ -130,6 +131,134 @@
       margin-left: auto;
       margin-right: auto;
     }
+    /* Guestbook improved styles */
+    .guestbook-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .guestbook-messages {
+      min-height: 60px;
+      width: 100%;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .guestbook-message-box {
+      background: rgba(36,36,36,0.92);
+      border-left: 5px solid #ff6600;
+      padding: 14px 22px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      min-width: 240px;
+      max-width: 430px;
+      width: 100%;
+      text-align: left;
+      box-shadow: 0 2px 10px 0 #0004;
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      font-size: 1.07em;
+    }
+    .guestbook-empty {
+      color: #ff6600;
+      font-style: italic;
+      margin: 28px 0;
+      font-size: 1.08em;
+      letter-spacing: 1px;
+    }
+    .guestbook-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      width: 100%;
+      margin-bottom: 0;
+    }
+    #guestbook-section input[type="text"] {
+      padding:8px;
+      border-radius:5px;
+      border:none;
+      margin-bottom:8px;
+      font-size: 1em;
+      background: #242424;
+      color: #eee;
+      border: 1.5px solid #222;
+      min-width: 150px;
+    }
+    #guestbook-section input[type="text"]:focus {
+      outline: 2px solid #ff6600;
+    }
+
+    /* Responsive adjustments for mobile */
+    @media (max-width: 700px) {
+      body {
+        padding: 8vw 0 10vw 0;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      .profile-photo {
+        width: 115px;
+        height: 115px;
+        margin-bottom: 14px;
+      }
+      .gear-pair {
+        flex-direction: column;
+        gap: 26px;
+        margin-top: 28px;
+      }
+      .gear-box {
+        width: 94vw;
+        max-width: 97vw;
+        min-width: 0;
+        padding: 16px 3vw;
+        font-size: 0.95em;
+      }
+      .compass-video {
+        width: 85px;
+        height: 85px;
+        top: 7px;
+        left: 7px;
+      }
+      .quote-section,
+      .recruit-section,
+      .quiz-section,
+      .intro-section,
+      .clock-section,
+      .guestbook-section {
+        padding: 4vw 2vw;
+        margin-top: 22px;
+        max-width: 98vw;
+        font-size: 1em;
+      }
+      .guestbook-message-box {
+        padding: 8px 7vw;
+        min-width: 0;
+        max-width: 95vw;
+        font-size: 0.97em;
+      }
+      .guestbook-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        width: 100%;
+      }
+      #guestbook-section input[type="text"] {
+        min-width: 0;
+        width: 92vw;
+        font-size: 0.99em;
+      }
+      .instagram-link {
+        right: 10px;
+        bottom: 10px;
+        padding: 6px 12px;
+        font-size: 1em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -191,6 +320,19 @@
     <div id="quizContent">
       <!-- Quiz will render here -->
     </div>
+  </div>
+
+  <!-- Guestbook Section -->
+  <div class="quote-section guestbook-section" id="guestbook-section">
+    <h2>🗺️ Marks on the Wasteland</h2>
+    <div id="guestbook-messages" class="guestbook-messages">
+      <!-- Messages will appear here -->
+    </div>
+    <form id="guestbook-form" class="guestbook-form" style="margin-top: 24px;">
+      <input type="text" id="guestbook-name" maxlength="18" placeholder="Your name or call sign" autocomplete="off" required>
+      <input type="text" id="guestbook-message" maxlength="120" placeholder="Your mark on the wasteland" autocomplete="off" required>
+      <button type="submit">Leave Mark</button>
+    </form>
   </div>
 
   <script>
@@ -279,14 +421,61 @@
     // Initialize the quiz on load
     showQuestion();
 
+    // --- Guestbook Data and Functions ---
+    const presetMessages = [
+      { name: "DustWalker", message: "Still searching for purpose beyond the ruins." },
+      { name: "Mara", message: "The stars guide me, even when the map is ash." },
+      { name: "Red Fox", message: "Saw Outsider riding east at dawn. Good luck." },
+      { name: "Silent Jack", message: "Left supplies under the old radio tower. Trust no one." }
+    ];
+
+    function loadGuestbook() {
+      let messages = [];
+      try {
+        messages = JSON.parse(localStorage.getItem("guestbookMessages")) || [];
+      } catch {}
+      const allMessages = [...presetMessages, ...messages];
+      let html = "";
+      if (allMessages.length === 0) {
+        html = `<div class="guestbook-empty">No marks yet. The wasteland is quiet... <br>Be the first to leave a sign.</div>`;
+      } else {
+        allMessages.forEach(msg => {
+          html += `<div class="guestbook-message-box">
+            <b style="color:#ff6600">${escapeHtml(msg.name)}:</b>
+            <span>${escapeHtml(msg.message)}</span>
+          </div>`;
+        });
+      }
+      document.getElementById("guestbook-messages").innerHTML = html;
+    }
+
+    function escapeHtml(str) {
+      return (str || "").replace(/[&<>"']/g, s => (
+        { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[s] ));
+    }
+
+    document.getElementById("guestbook-form").addEventListener("submit", function(e){
+      e.preventDefault();
+      const name = document.getElementById("guestbook-name").value.trim();
+      const msg = document.getElementById("guestbook-message").value.trim();
+      if (name && msg) {
+        // Save to localStorage
+        let messages = [];
+        try {
+          messages = JSON.parse(localStorage.getItem("guestbookMessages")) || [];
+        } catch {}
+        messages.push({ name, message: msg });
+        localStorage.setItem("guestbookMessages", JSON.stringify(messages));
+        document.getElementById("guestbook-name").value = "";
+        document.getElementById("guestbook-message").value = "";
+        loadGuestbook();
+      }
+    });
+
+    loadGuestbook();
+
   </script>
 
   <!-- Sticky Instagram Link -->
   <div class="instagram-link">
-    <a href="https://www.instagram.com/rideinapocalypse/" target="_blank">
-      <i class="fab fa-instagram"></i> @rideinapocalypse
-    </a>
-  </div>
-
-</body>
-</html>
+    <a href="https://www.instagram.com/rideinapocalypse/" target="_
